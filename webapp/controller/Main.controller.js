@@ -26,7 +26,7 @@ sap.ui.define([
             this.oFilterBar.registerApplyData(this.applyData);
             this.oFilterBar.registerGetFiltersWithValues(this.getFiltersWithValues);
 
-            var oPersInfo = new PersonalizableInfo({
+            let oPersInfo = new PersonalizableInfo({
                 type: "filterBar",
                 keyName: "persistencyKey",
                 dataSource: "",
@@ -37,8 +37,8 @@ sap.ui.define([
 
             this.getView().addStyleClass("sapUiSizeCompact");
 
-            var sUrl = "https://services.odata.org/Northwind/Northwind.svc/";
-            var oModelOData = new ODataModel(sUrl);
+            let sUrl = "https://services.odata.org/Northwind/Northwind.svc/";
+            let oModelOData = new ODataModel(sUrl);
 
 
             // .read("/Products") -> SELECT * FROM PRODUCTS
@@ -48,12 +48,12 @@ sap.ui.define([
                 }, // El expand es como un INNER JOIN
                 success: function(oData) {
                     console.log(oData)
-                    var aNorthwindProducts = oData.results;
+                    let aNorthwindProducts = oData.results;
 
-                    var aMappedProducts = aNorthwindProducts.map(function(p) {
-                        var sState = "Success"; 
-                        var sIcon = "sap-icon://accept";
-                        var sStockText = "En Stock (" + p.UnitsInStock + ")";
+                    let aMappedProducts = aNorthwindProducts.map(function(p) {
+                        let sState = "Success"; 
+                        let sIcon = "sap-icon://accept";
+                        let sStockText = "En Stock (" + p.UnitsInStock + ")";
 
                         if (p.Discontinued) {
                             sState = "Error";
@@ -78,10 +78,10 @@ sap.ui.define([
                         };
                     });
 
-                    var aUniqueNames = [...new Set(aMappedProducts.map(p => p.Name))].sort().map(n => ({ key: n, name: n }));
-                    var aUniqueSuppliers = [...new Set(aMappedProducts.map(p => p.SupplierName))].sort().map(s => ({ key: s, name: s }));
+                    let aUniqueNames = [...new Set(aMappedProducts.map(p => p.Name))].sort().map(n => ({ key: n, name: n }));
+                    let aUniqueSuppliers = [...new Set(aMappedProducts.map(p => p.SupplierName))].sort().map(s => ({ key: s, name: s }));
 
-                    var oModelJson = new JSONModel();
+                    let oModelJson = new JSONModel();
                     oModelJson.setData({
                         ProductCollection: aMappedProducts,
                         ProductNames: aUniqueNames,
@@ -98,18 +98,18 @@ sap.ui.define([
         },
 
         onPress: function(oEvent) {
-            var oItem = oEvent.getSource();
+            let oItem = oEvent.getSource();
             console.log(oItem)
-            var oBindingContext = oItem.getBindingContext("datos");
-            var sProductId = oBindingContext.getProperty("ProductId");
+            let oBindingContext = oItem.getBindingContext("datos");
+            let sProductId = oBindingContext.getProperty("ProductId");
 
-            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            let oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             oRouter.navTo("Detalle", {
                 objectId: sProductId
             });
         },
         fetchData: function () {
-            var aData = this.oFilterBar.getAllFilterItems().reduce(function (aResult, oFilterItem) {
+            let aData = this.oFilterBar.getAllFilterItems().reduce(function (aResult, oFilterItem) {
                 aResult.push({
                     groupName: oFilterItem.getGroupName(),
                     fieldName: oFilterItem.getName(),
@@ -122,14 +122,14 @@ sap.ui.define([
 
         applyData: function (aData) {
             aData.forEach(function (oDataObject) {
-                var oControl = this.oFilterBar.determineControlByName(oDataObject.fieldName, oDataObject.groupName);
+                let oControl = this.oFilterBar.determineControlByName(oDataObject.fieldName, oDataObject.groupName);
                 oControl.setSelectedKeys(oDataObject.fieldData);
             }, this);
         },
 
         getFiltersWithValues: function () {
-            var aFiltersWithValue = this.oFilterBar.getFilterGroupItems().reduce(function (aResult, oFilterGroupItem) {
-                var oControl = oFilterGroupItem.getControl();
+            let aFiltersWithValue = this.oFilterBar.getFilterGroupItems().reduce(function (aResult, oFilterGroupItem) {
+                let oControl = oFilterGroupItem.getControl();
                 if (oControl && oControl.getSelectedKeys && oControl.getSelectedKeys().length > 0) {
                     aResult.push(oFilterGroupItem);
                 }
@@ -145,8 +145,8 @@ sap.ui.define([
         },
 
         onSearch: function () {
-            var aTableFilters = this.oFilterBar.getFilterGroupItems().reduce(function (aResult, oFilterGroupItem) {
-                var oControl = oFilterGroupItem.getControl(),
+            let aTableFilters = this.oFilterBar.getFilterGroupItems().reduce(function (aResult, oFilterGroupItem) {
+                let oControl = oFilterGroupItem.getControl(),
                     aSelectedKeys = oControl.getSelectedKeys(),
                     aFilters = aSelectedKeys.map(function (sSelectedKey) {
                         return new Filter({
@@ -180,16 +180,16 @@ sap.ui.define([
         },
 
         getFormattedSummaryText: function() {
-            var aFiltersWithValues = this.oFilterBar.retrieveFiltersWithValues();
+            let aFiltersWithValues = this.oFilterBar.retrieveFiltersWithValues();
             if (aFiltersWithValues.length === 0) return "No filters active";
             if (aFiltersWithValues.length === 1) return aFiltersWithValues.length + " filter active: " + aFiltersWithValues.join(", ");
             return aFiltersWithValues.length + " filters active: " + aFiltersWithValues.join(", ");
         },
 
         getFormattedSummaryTextExpanded: function() {
-            var aFiltersWithValues = this.oFilterBar.retrieveFiltersWithValues();
+            let aFiltersWithValues = this.oFilterBar.retrieveFiltersWithValues();
             if (aFiltersWithValues.length === 0) return "No filters active";
-            var sText = aFiltersWithValues.length + " filters active",
+            let sText = aFiltersWithValues.length + " filters active",
                 aNonVisibleFiltersWithValues = this.oFilterBar.retrieveNonVisibleFiltersWithValues();
             if (aFiltersWithValues.length === 1) sText = aFiltersWithValues.length + " filter active";
             if (aNonVisibleFiltersWithValues && aNonVisibleFiltersWithValues.length > 0) sText += " (" + aNonVisibleFiltersWithValues.length + " hidden)";
