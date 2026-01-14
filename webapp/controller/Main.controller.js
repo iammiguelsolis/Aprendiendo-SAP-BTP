@@ -146,7 +146,9 @@ sap.ui.define([
         onSelectionChange: function (oEvent) {
             this.oSmartVariantManagement.currentVariantSetModified(true);
             this.oFilterBar.fireFilterChange(oEvent);
-            this.onSearch();
+
+            this.oTable.setShowOverlay(true);
+            //this.onSearch();
         },
 
         onSearch: function () {
