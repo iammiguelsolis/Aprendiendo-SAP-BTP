@@ -1,0 +1,166 @@
+<mvc:View
+    controllerName="uppersap.com.prototipo.controller.Main"
+    height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:svm="sap.ui.comp.smartvariants"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+
+    <f:DynamicPage headerExpanded="{/headerExpanded}">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <svm:SmartVariantManagement id="svm" showExecuteOnSelection="true" />
+                </f:heading>
+                <f:actions>
+                        <Button text="Crear Orden" type="Emphasized" press=".onNavToCreate" icon="sap-icon://add" />
+                </f:actions>
+                <f:expandedContent>
+                    <Label id="expandedLabel" text="Filtros activos" />
+                </f:expandedContent>
+                <f:snappedContent>
+                    <Label id="snappedLabel" text="Filtros activos" />
+                </f:snappedContent>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <f:header>
+            <f:DynamicPageHeader>
+                <f:content>
+                    <fb:FilterBar 
+                        id="filterbar" 
+                        persistencyKey="myPersKey" 
+                        useToolbar="false" 
+                        search=".onSearch" 
+                        filterChange=".onFilterChange" 
+                        afterVariantLoad=".onAfterVariantLoad"
+                        showGoOnFB="true">
+                        
+                        <fb:filterGroupItems>
+                            <fb:FilterGroupItem name="OrderNumber" label="Número de Orden" groupName="Group1" visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input value="{filter>/OrderNumber}" placeholder="Ej: 1" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+
+                            <fb:FilterGroupItem name="Description" label="Descripción" groupName="Group1" visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input value="{filter>/Description}" placeholder="Buscar descripción..." />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+
+                            <fb:FilterGroupItem name="Status" label="Estado" groupName="Group1" visibleInFilterBar="true">
+                                <fb:control>
+                                    <MultiComboBox
+                                        selectionChange=".onSearch"
+                                        items="{
+                                            path: 'datos>/Statuses',
+                                            templateShareable: true
+                                        }"
+                                        selectedKeys="{filter>/Status}"
+                                    >
+                                        <core:Item key="{datos>key}" text="{datos>name}"/>
+                                    </MultiComboBox>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+
+                            <fb:FilterGroupItem name="LocalCenter" label="Centro Local" groupName="Group1" visibleInFilterBar="true">
+                                <fb:control>
+                                    <MultiComboBox
+                                        id="mcLocalCenter" 
+                                        selectionChange=".onSearch" 
+                                        items="{
+                                            path: 'datos>/Centers',
+                                            templateShareable: true
+                                        }"
+                                        selectedKeys="{filter>/LocalCenter}"
+                                    >
+                                        <core:Item key="{datos>key}" text="{datos>name}"/>
+                                    </MultiComboBox>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+
+                        </fb:filterGroupItems>
+                    </fb:FilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+
+        <f:content>
+            <Table
+                id="table"
+                inset="false"
+                items="{
+                    path: 'datos>/OrderCollection'
+                }"
+                growing="true"
+                growingThreshold="20"
+            >
+                <columns>
+                    <Column width="4em" hAlign="Center">
+                        <Text text="Orden"/>
+                    </Column>
+                    
+                    <Column>
+                        <Text text="Descripción"/>
+                    </Column>
+
+                    <Column width="8em">
+                        <Text text="Orden Number"/>
+                    </Column>
+
+                    <Column width="10em" hAlign="Center">
+                        <Text text="Status"/>
+                    </Column>
+
+                    <Column width="10em">
+                        <Text text="Local Center"/>
+                    </Column>
+
+                    <Column width="8em" hAlign="End">
+                        <Text text="Fecha"/>
+                    </Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem 
+                        vAlign="Middle" 
+                        type="Navigation" 
+                        press=".onPress" 
+                        highlight="{datos>StatusState}">
+                        
+                        <cells>
+                            <Text text="{datos>OrderId}" />
+                            <Text text="{datos>Description}" />
+                            <Text text="{datos>OrderNumber}" />
+
+                            <ObjectStatus
+                                text="{datos>StatusText}"
+                                state="{datos>StatusState}"
+                                inverted="true"
+                                class="{= ${datos>StatusState} === 'None' ? 'claseGris' : '' }"
+                            />
+
+                            <Text text="{datos>LocalCenter}" />
+
+                            <Text text="{
+                                path: 'datos>Date',
+                                type: 'sap.ui.model.type.Date',
+                                formatOptions: {
+                                    pattern: 'dd/MM/yyyy',
+                                    source: {
+                                        pattern: 'yyyy-MM-dd'
+                                    }
+                                }
+                            }" />
+                            
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

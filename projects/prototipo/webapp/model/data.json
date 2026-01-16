@@ -1,0 +1,277 @@
+{
+    "OrderCollection": [
+        {
+            "OrderId": "1",
+            "Description": "Abastecimiento Obra Central",
+            "OrderNumber": "0001",
+            "StatusText": "Activo",
+            "StatusState": "Success",
+            "LocalCenter": "Lima",
+            "Date": "2025-11-28",
+            "Materials": [
+                {
+                    "MatType": "Cemento",
+                    "MatDesc": "Cemento Portland tipo I",
+                    "MatCenter": "Lima",
+                    "MatStore": "Almacén Central",
+                    "OrgVentas": "1000",
+                    "Canal": "10",
+                    "UMB": "KG",
+                    "UMA": "1000",
+                    "TextoUMA": "Mil kilogramos"
+                },
+                {
+                    "MatType": "Arena",
+                    "MatDesc": "Arena fina de río",
+                    "MatCenter": "Lima",
+                    "MatStore": "Almacén Secundario",
+                    "OrgVentas": "1000",
+                    "Canal": "10",
+                    "UMB": "M3",
+                    "UMA": "500",
+                    "TextoUMA": "Quinientos metros cúbicos"
+                },
+                {
+                    "MatType": "Ladrillo",
+                    "MatDesc": "Ladrillo King Kong 18 huecos",
+                    "MatCenter": "Lima",
+                    "MatStore": "Patio de Maniobras",
+                    "OrgVentas": "1000",
+                    "Canal": "10",
+                    "UMB": "MLL",
+                    "UMA": "5",
+                    "TextoUMA": "Cinco millares"
+                }
+            ]
+        },
+        {
+            "OrderId": "2",
+            "Description": "Verificación de Stock",
+            "OrderNumber": "0002",
+            "StatusText": "Pendiente",
+            "StatusState": "None",
+            "LocalCenter": "Lima",
+            "Date": "2025-11-29",
+            "Materials": []
+        },
+        {
+            "OrderId": "3",
+            "Description": "Materiales para Carretera",
+            "OrderNumber": "0003",
+            "StatusText": "En Proceso",
+            "StatusState": "Warning",
+            "LocalCenter": "Cusco",
+            "Date": "2025-12-01",
+            "Materials": [
+                {
+                    "MatType": "Asfalto",
+                    "MatDesc": "Asfalto en frío RC-250",
+                    "MatCenter": "Cusco",
+                    "MatStore": "Almacén Vías",
+                    "OrgVentas": "3000",
+                    "Canal": "30",
+                    "UMB": "GLN",
+                    "UMA": "200",
+                    "TextoUMA": "Doscientos galones"
+                },
+                {
+                    "MatType": "Grava",
+                    "MatDesc": "Piedra chancada 1/2",
+                    "MatCenter": "Cusco",
+                    "MatStore": "Cantera Sur",
+                    "OrgVentas": "3000",
+                    "Canal": "30",
+                    "UMB": "M3",
+                    "UMA": "50",
+                    "TextoUMA": "Cincuenta metros cúbicos"
+                }
+            ]
+        },
+        {
+            "OrderId": "4",
+            "Description": "Equipos de Protección Personal",
+            "OrderNumber": "0004",
+            "StatusText": "Rechazado",
+            "StatusState": "Error",
+            "LocalCenter": "Trujillo",
+            "Date": "2025-12-05",
+            "Materials": [
+                {
+                    "MatType": "EPP",
+                    "MatDesc": "Casco de seguridad blanco",
+                    "MatCenter": "Trujillo",
+                    "MatStore": "Almacén EPP",
+                    "OrgVentas": "4000",
+                    "Canal": "20",
+                    "UMB": "UND",
+                    "UMA": "100",
+                    "TextoUMA": "Cien unidades"
+                },
+                {
+                    "MatType": "EPP",
+                    "MatDesc": "Chaleco reflectivo naranja",
+                    "MatCenter": "Trujillo",
+                    "MatStore": "Almacén EPP",
+                    "OrgVentas": "4000",
+                    "Canal": "20",
+                    "UMB": "UND",
+                    "UMA": "100",
+                    "TextoUMA": "Cien unidades"
+                }
+            ]
+        },
+        {
+            "OrderId": "5",
+            "Description": "Renovación de Oficinas",
+            "OrderNumber": "0005",
+            "StatusText": "Completado",
+            "StatusState": "Information",
+            "LocalCenter": "Arequipa",
+            "Date": "2025-11-15",
+            "Materials": [
+                {
+                    "MatType": "Pintura",
+                    "MatDesc": "Pintura Latex Blanco Humo",
+                    "MatCenter": "Arequipa",
+                    "MatStore": "Tienda Principal",
+                    "OrgVentas": "2000",
+                    "Canal": "10",
+                    "UMB": "BAL",
+                    "UMA": "20",
+                    "TextoUMA": "Veinte baldes"
+                },
+                {
+                    "MatType": "Acabados",
+                    "MatDesc": "Cerámico 60x60 Gris",
+                    "MatCenter": "Arequipa",
+                    "MatStore": "Tienda Principal",
+                    "OrgVentas": "2000",
+                    "Canal": "10",
+                    "UMB": "M2",
+                    "UMA": "150",
+                    "TextoUMA": "Ciento cincuenta m2"
+                }
+            ]
+        },
+        {
+            "OrderId": "6",
+            "Description": "Estructuras Metálicas",
+            "OrderNumber": "0006",
+            "StatusText": "Activo",
+            "StatusState": "Success",
+            "LocalCenter": "Piura",
+            "Date": "2025-12-10",
+            "Materials": [
+                {
+                    "MatType": "Acero",
+                    "MatDesc": "Fierro corrugado 1/2 pulgada",
+                    "MatCenter": "Piura",
+                    "MatStore": "Almacén Hierro",
+                    "OrgVentas": "5000",
+                    "Canal": "50",
+                    "UMB": "VAR",
+                    "UMA": "500",
+                    "TextoUMA": "Quinientas varillas"
+                },
+                {
+                    "MatType": "Acero",
+                    "MatDesc": "Alambre recocido N16",
+                    "MatCenter": "Piura",
+                    "MatStore": "Almacén Hierro",
+                    "OrgVentas": "5000",
+                    "Canal": "50",
+                    "UMB": "KG",
+                    "UMA": "50",
+                    "TextoUMA": "Cincuenta kilos"
+                }
+            ]
+        },
+        {
+            "OrderId": "7",
+            "Description": "Orden de Servicio - Auditoría",
+            "OrderNumber": "0007",
+            "StatusText": "Pendiente",
+            "StatusState": "None",
+            "LocalCenter": "Lima",
+            "Date": "2026-01-05",
+            "Materials": []
+        },
+        {
+            "OrderId": "8",
+            "Description": "Suministros Hidráulicos",
+            "OrderNumber": "0008",
+            "StatusText": "En Proceso",
+            "StatusState": "Warning",
+            "LocalCenter": "Trujillo",
+            "Date": "2026-01-12",
+            "Materials": [
+                {
+                    "MatType": "Tubería",
+                    "MatDesc": "Tubo PVC SAP 4 pulgadas",
+                    "MatCenter": "Trujillo",
+                    "MatStore": "Patio Tuberías",
+                    "OrgVentas": "4000",
+                    "Canal": "20",
+                    "UMB": "TUBO",
+                    "UMA": "80",
+                    "TextoUMA": "Ochenta tubos"
+                },
+                {
+                    "MatType": "Pegamento",
+                    "MatDesc": "Pegamento PVC Oatey",
+                    "MatCenter": "Trujillo",
+                    "MatStore": "Almacén Químicos",
+                    "OrgVentas": "4000",
+                    "Canal": "20",
+                    "UMB": "LAT",
+                    "UMA": "10",
+                    "TextoUMA": "Diez latas"
+                }
+            ]
+        },
+        {
+            "OrderId": "9",
+            "Description": "Devolución de Material Defectuoso",
+            "OrderNumber": "0009",
+            "StatusText": "Rechazado",
+            "StatusState": "Error",
+            "LocalCenter": "Cusco",
+            "Date": "2025-12-20",
+            "Materials": [
+                {
+                    "MatType": "Eléctrico",
+                    "MatDesc": "Cable N2XOH 3x10mm",
+                    "MatCenter": "Cusco",
+                    "MatStore": "Almacén Eléctrico",
+                    "OrgVentas": "3000",
+                    "Canal": "30",
+                    "UMB": "MTS",
+                    "UMA": "100",
+                    "TextoUMA": "Cien metros"
+                }
+            ]
+        },
+        {
+            "OrderId": "10",
+            "Description": "Cierre de Proyecto Sur",
+            "OrderNumber": "0010",
+            "StatusText": "Completado",
+            "StatusState": "Information",
+            "LocalCenter": "Arequipa",
+            "Date": "2025-12-30",
+            "Materials": [
+                {
+                    "MatType": "Varios",
+                    "MatDesc": "Retiro de Escombros",
+                    "MatCenter": "Arequipa",
+                    "MatStore": "N/A",
+                    "OrgVentas": "2000",
+                    "Canal": "10",
+                    "UMB": "VIAJE",
+                    "UMA": "5",
+                    "TextoUMA": "Cinco viajes de camión"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form">
+    <Dialog title="{formModel>/title}" contentWidth="400px">
+        <content>
+            <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                <form:content>
+                    <Label text="Tipo de Material" />
+                    <Input value="{formModel>/MatType}" />
+
+                    <Label text="Descripción" />
+                    <Input value="{formModel>/MatDesc}" />
+
+                    <Label text="Centro" />
+                    <Input value="{formModel>/MatCenter}" />
+
+                    <Label text="Almacén" />
+                    <Input value="{formModel>/MatStore}" />
+                    
+                    </form:content>
+            </form:SimpleForm>
+        </content>
+        <beginButton>
+            <Button text="Guardar" type="Emphasized" press=".onSaveMaterial" />
+        </beginButton>
+        <endButton>
+            <Button text="Cancelar" press=".onCloseDialog" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

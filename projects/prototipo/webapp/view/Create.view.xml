@@ -1,0 +1,158 @@
+<mvc:View
+    controllerName="uppersap.com.prototipo.controller.Create"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout">
+
+    <NavContainer id="wizardNavContainer">
+
+        <Page id="wizardContentPage" title="Nueva Orden" showNavButton="true" navButtonPress=".onNavBack">
+            <content>
+                <Wizard id="CreateWizard" complete="wizardCompletedHandler">
+                    
+                    <WizardStep id="ProductTypeStep" title="Información General" validated="false">
+                        <MessageStrip class="sapUiSmallMarginBottom" text="Ingrese los datos básicos de la orden para continuar." showIcon="true"/>
+                        
+                        <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                            <Label text="Descripción" required="true"/>
+                            <Input value="{createModel>/Description}" liveChange=".validateStep1" placeholder="Ej: Abastecimiento Norte"/>
+
+                            <Label text="Centro Local" required="true"/>
+                            <ComboBox items="{datos>/Centers}" selectedKey="{createModel>/LocalCenter}" selectionChange=".validateStep1">
+                                <core:Item key="{datos>key}" text="{datos>name}"/>
+                            </ComboBox>
+
+                            <Label text="Fecha" required="true"/>
+                            <DatePicker value="{createModel>/Date}" change=".validateStep1" displayFormat="dd/MM/yyyy" valueFormat="yyyy-MM-dd"/>
+                        </form:SimpleForm>
+                    </WizardStep>
+
+                    <WizardStep id="MaterialsStep" title="Materiales (Opcional)" validated="true">
+                        <Text text="Puede agregar materiales ahora o hacerlo más tarde desde el detalle." class="sapUiSmallMarginBottom"/>
+                        
+                        <Table items="{createModel>/Materials}" mode="Delete" delete=".onDeleteMaterial">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <Title text="Lista de Materiales"/>
+                                    <ToolbarSpacer/>
+                                    <Button text="Agregar Material" icon="sap-icon://add" press=".onAddMaterial"/>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column><Text text="Tipo"/></Column>
+                                <Column><Text text="Descripción"/></Column>
+                                <Column><Text text="Almacén"/></Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Input value="{createModel>MatType}" placeholder="Ej: Cemento"/>
+                                        <Input value="{createModel>MatDesc}" placeholder="Ej: Portland Tipo I"/>
+                                        <Input value="{createModel>MatStore}" placeholder="Ej: Alm. Central"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </WizardStep>
+
+                </Wizard>
+            </content>
+            <footer>
+                <OverflowToolbar>
+                    <ToolbarSpacer/>
+                    <Button text="Cancelar" press=".onNavBack"/>
+                </OverflowToolbar>
+            </footer>
+        </Page>
+
+        <Page id="wizardReviewPage" showHeader="false">
+            <content>
+                <VBox class="sapUiSmallMargin">
+        
+                    <Title text="Resumen de la Orden" level="H2" class="sapUiMediumMarginBottom"/>
+
+                    <VBox class="sapUiMediumMarginBottom">
+                        <HBox justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMarginBottom" width="100%">
+                            <Title text="1. Datos Generales" level="H3" titleStyle="H4"/>
+                            <Link text="Editar" press=".onEditStep1" />
+                        </HBox>
+                        
+                        <core:HTML content='&lt;hr style="border:none; border-top:1px solid #e5e5e5; margin:0 0 10px 0;"/&gt;' />
+
+                        <form:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1">
+                            <Label text="Descripción" design="Bold"/>
+                            <Text text="{createModel>/Description}"/>
+                            
+                            <Label text="Centro Local" design="Bold"/>
+                            <Text text="{createModel>/LocalCenter}"/>
+                            
+                            <Label text="Fecha" design="Bold"/>
+                            <Text text="{
+                                path: 'createModel>/Date',
+                                type: 'sap.ui.model.type.Date',
+                                formatOptions: {
+                                    pattern: 'dd/MM/yyyy',
+                                    source: {
+                                        pattern: 'yyyy-MM-dd'
+                                    }
+                                }
+                            }" />
+                        </form:SimpleForm>
+                    </VBox>
+
+                    <VBox class="sapUiMediumMarginBottom">
+                        <HBox justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMarginBottom" width="100%">
+                            <Title text="2. Materiales Asignados ({= ${createModel>/Materials}.length })" level="H3" titleStyle="H4"/>
+                            <Link text="Editar" press=".onEditStep2" />
+                        </HBox>
+
+                        <core:HTML content='&lt;hr style="border:none; border-top:1px solid #e5e5e5; margin:0 0 10px 0;"/&gt;' />
+
+                        <Table items="{createModel>/Materials}" inset="false" backgroundDesign="Transparent" showSeparators="Inner">
+                            <columns>
+                                <Column><Text text="Tipo" /></Column>
+                                <Column><Text text="Descripción" /></Column>
+                                <Column hAlign="End"><Text text="Almacén" /></Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{createModel>MatType}" />
+                                        <Text text="{createModel>MatDesc}" />
+                                        <Text text="{createModel>MatStore}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                            <noData>
+                                <Text text="No se han agregado materiales opcionales." class="sapUiSmallMargin"/>
+                            </noData>
+                        </Table>
+                    </VBox>
+
+                    <VBox>
+                        <HBox justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMarginBottom" width="100%">
+                            <Title text="3. Estado Inicial" level="H3" titleStyle="H4"/>
+                        </HBox>
+                        <core:HTML content='&lt;hr style="border:none; border-top:1px solid #e5e5e5; margin:0 0 10px 0;"/&gt;' />
+                        
+                        <form:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1">
+                            <Label text="Estado" design="Bold"/>
+                            <ObjectStatus text="Borrador / Creado" state="Information" inverted="true" />
+                        </form:SimpleForm>
+                    </VBox>
+
+                </VBox>
+            </content>
+            <footer>
+                <OverflowToolbar>
+                    <Button text="Volver al Wizard" press=".onBackToWizard"/>
+                    <ToolbarSpacer/>
+                    <Button text="Guardar Orden" type="Emphasized" press=".onSaveOrder"/>
+                </OverflowToolbar>
+            </footer>
+        </Page>
+
+    </NavContainer>
+</mvc:View>
