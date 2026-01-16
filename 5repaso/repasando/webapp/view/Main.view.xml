@@ -2,5 +2,11 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
+        <Button id="miBotonSupremo" text="Púlsame" press="alPresionar" />
+
+        <HBox id='box'>
+            <Input id='inputUsuario' liveChange="onEscribiendo" value='' placeholder="Escribe algo..."/>
+            <Button id = 'buttonUsuario' text='Validar' press='onValidar'/>
+        </HBox>
     </Page>
 </mvc:View>
