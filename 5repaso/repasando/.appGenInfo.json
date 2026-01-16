@@ -1,0 +1,24 @@
+{
+  "generationParameters": {
+    "generationDate": "Fri Jan 16 2026 18:03:57 GMT-0500 (Peru Standard Time)",
+    "generatorPlatform": "Visual Studio Code",
+    "serviceType": "None",
+    "metadataFilename": "",
+    "serviceUrl": "N/A",
+    "appName": "repasando",
+    "appTitle": "App Title",
+    "appDescription": "An SAP Fiori application.",
+    "appNamespace": "uppersap.com",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.143.2",
+    "enableCodeAssist": false,
+    "enableEslint": false,
+    "enableTypeScript": false,
+    "showMockDataInfo": false,
+    "generatorVersion": "1.20.0",
+    "template": "Basic",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [],
+    "launchText": "To launch the generated application, run the following from the generated application root folder:\n\n```\n    npm start\n```"
+  }
+}
